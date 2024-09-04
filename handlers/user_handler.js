@@ -60,12 +60,22 @@ async function login(req, res) {
   }
 }
 
-// Handler to update a user by their ID
+// Handler to update a user 
 async function updateOne(req, res) {
   try {
     const userId = req.params.id;
     const updateData = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ message: "User ID is required" });
+    }
+
     const updatedUser = await userUsecase.updateOne({ user_id: userId, ...updateData });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
     res.json({ message: "User updated successfully", user: updatedUser });
   } catch (error) {
     console.error(error);
@@ -73,4 +83,26 @@ async function updateOne(req, res) {
   }
 }
 
-module.exports = { getOneByUserId, getOneByEmail, getList, register, login, updateOne };
+// Handler to delete a user
+async function deleteOne(req, res) {
+  try {
+    const userId = req.params.id;
+
+    if (!userId) {
+      return res.status(400).json({ message: "User ID is required" });
+    }
+
+    const deletedUser = await userUsecase.deleteOne(userId);
+
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error', message: error.message });
+  }
+}
+
+module.exports = { getOneByUserId, getOneByEmail, getList, register, login, updateOne, deleteOne };

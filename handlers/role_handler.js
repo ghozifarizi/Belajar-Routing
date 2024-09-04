@@ -27,4 +27,45 @@ async function getList(req, res) {
   }
 }
 
-module.exports = { create, getList };
+// Handler to update a role
+async function update(req, res) {
+  try {
+    const roleId = req.params.id;
+    const { name, position, stacks } = req.body;
+
+    if (!name || !position || !stacks) {
+      return res.status(400).json({ message: "Name, Position, and Stacks are required" });
+    }
+
+    const updateData = { name, position, stacks };
+    const updatedRole = await roleUsecase.update(roleId, updateData);
+    
+    if (!updatedRole) {
+      return res.status(404).json({ message: 'Role not found' });
+    }
+
+    res.json({ message: 'Role updated successfully', role: updatedRole });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error', message: error.message });
+  }
+}
+
+// Handler to delete a role 
+async function deleteRole(req, res) {
+  try {
+    const roleId = req.params.id;
+
+    const deletedRole = await roleUsecase.delete(roleId);
+    if (!deletedRole) {
+      return res.status(404).json({ message: 'Role not found' });
+    }
+
+    res.json({ message: 'Role deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error', message: error.message });
+  }
+}
+
+module.exports = { create, getList, update, deleteRole };
