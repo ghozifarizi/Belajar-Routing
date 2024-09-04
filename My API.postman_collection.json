@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "66c9bade-1758-4840-bd1e-0d233cfd1154",
+		"name": "My API",
+		"description": "API for My Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37994960"
+	},
+	"item": [
+		{
+			"name": "User Registration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"ghozi\",\n    \"email\": \"ghozi@example.com\",\n    \"password\": \"password123\",\n  \n}"
+				},
+				"url": {
+					"raw": "http://localhost:7000/digistar/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"testuser@example.com\",\n    \"password\": \"password123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7000/digistar/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/digistar/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/digistar/user/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "e2bb6727-05ff-4785-92b0-a064c346ba14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User by ID",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"updateduser\",\n    \"email\": \"updateduser@example.com\",\n    \"password\": \"newpassword123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7000/digistar/user/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "e2bb6727-05ff-4785-92b0-a064c346ba14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/digistar/user/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "824f54b0-4f86-4ff3-82d8-be2f7310ffd1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Role",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"admin\",\n    \"position\": \"manager\",\n    \"stacks\": [\"nodejs\", \"react\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7000/digistar/role",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"role"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Roles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/digistar/role",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"role"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Role by ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n     \"name\": \"ghozi\",\r\n     \"position\": \"director\",\r\n     \"stacks\": [\r\n         \"nodejs\",\r\n         \"react\"\r\n        ],\r\n        \"__v\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/digistar/role/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"role",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Role by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/digistar/role/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"role",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_name\": \"Product 1\",\n    \"quantity\": 10,\n    \"price\": 100,\n    \"status\": \"pending\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7000/digistar/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Orders",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7000/digistar/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Order by ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/digistar/order/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"order",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Order by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/digistar/order/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"digistar",
+						"order",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
