@@ -83,4 +83,4 @@ async function deleteOne(roleId) {
   }
 }
 
-module.exports = { create, getOneByRoleId, getOneByName, findAll, updateOne, deleteOne };
+module.exports = { create, getOneByRoleId, getOneByName, findAll, updateOne, deleteOne};

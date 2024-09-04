@@ -32,10 +32,14 @@ const getList = async () => {
 // Function to update a role by role_id
 const updateOne = async (roleId, updateData) => {
     try {
-        const updatedRole = await repositories.updateOne({ role_id: roleId }, updateData);
-        if (!updatedRole) {
+        // Find the role by role_id first to ensure it exists
+        const role = await repositories.getOneByRoleId(roleId);
+        if (!role) {
             throw new Error('Role not found');
         }
+
+        // Update the role data
+        const updatedRole = await repositories.updateOne(roleId, updateData);
         return updatedRole;
     } catch (error) {
         throw new Error('Failed to update role');
@@ -45,10 +49,14 @@ const updateOne = async (roleId, updateData) => {
 // Function to delete a role by role_id
 const deleteOne = async (roleId) => {
     try {
-        const result = await repositories.deleteOne({ role_id: roleId });
-        if (result.deletedCount === 0) {
+        // Check if the role exists
+        const role = await repositories.getOneByRoleId(roleId);
+        if (!role) {
             throw new Error('Role not found');
         }
+
+        // Delete the role from the database
+        await repositories.deleteOne(roleId);
         return { message: 'Role deleted successfully' };
     } catch (error) {
         throw new Error('Failed to delete role');

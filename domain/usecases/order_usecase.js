@@ -38,30 +38,38 @@ const getOneByOrderId = async (orderId) => {
     }
 }
 
-// Function to update an order by order_id
-const update = async (orderId, updateData) => {
+// Function to update an order by order id
+const updateOne = async (orderId, updateData) => {
     try {
-        const updatedOrder = await orderRepository.updateOne(orderId, updateData);
-        if (!updatedOrder) {
+        // Find the order by order_id first to ensure it exists
+        const order = await orderRepository.getOneByOrderId(orderId);
+        if (!order) {
             throw new Error('Order not found');
         }
+
+        // Update the order data
+        const updatedOrder = await orderRepository.updateOne(orderId, updateData);
         return updatedOrder;
     } catch (error) {
         throw new Error('Failed to update order');
     }
 };
 
-// Function to delete an order by order_id
+// Function to delete an order by order id
 const deleteOne = async (orderId) => {
     try {
-        const result = await orderRepository.deleteOne(orderId);
-        if (result.deletedCount === 0) {
+        // Check if the order exists
+        const order = await orderRepository.getOneByOrderId(orderId);
+        if (!order) {
             throw new Error('Order not found');
         }
+
+        // Delete the order from the database
+        await orderRepository.deleteOne(orderId);
         return { message: 'Order deleted successfully' };
     } catch (error) {
         throw new Error('Failed to delete order');
     }
 };
 
-module.exports = { create, getList, getOneByOrderId, update, deleteOne };
+module.exports = { create, getList, getOneByOrderId, updateOne, deleteOne };

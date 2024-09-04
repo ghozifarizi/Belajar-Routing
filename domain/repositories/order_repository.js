@@ -39,7 +39,7 @@ async function findAll() {
   }
 }
 
-// Function to update an order by order_id
+// Function to update an order by order id
 async function updateOne(orderId, updateData) {
   try {
     // Find the order by order_id and update it
@@ -54,7 +54,7 @@ async function updateOne(orderId, updateData) {
   }
 }
 
-// Function to delete an order by order_id
+// Function to delete an order by order id
 async function deleteOne(orderId) {
   try {
     // Find and delete the order by order_id

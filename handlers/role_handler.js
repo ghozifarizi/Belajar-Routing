@@ -28,7 +28,7 @@ async function getList(req, res) {
 }
 
 // Handler to update a role
-async function update(req, res) {
+async function updateOne(req, res) {
   try {
     const roleId = req.params.id;
     const { name, position, stacks } = req.body;
@@ -38,7 +38,7 @@ async function update(req, res) {
     }
 
     const updateData = { name, position, stacks };
-    const updatedRole = await roleUsecase.update(roleId, updateData);
+    const updatedRole = await roleUsecase.updateOne(roleId, updateData);
     
     if (!updatedRole) {
       return res.status(404).json({ message: 'Role not found' });
@@ -52,11 +52,11 @@ async function update(req, res) {
 }
 
 // Handler to delete a role 
-async function deleteRole(req, res) {
+async function deleteOne(req, res) {
   try {
     const roleId = req.params.id;
 
-    const deletedRole = await roleUsecase.delete(roleId);
+    const deletedRole = await roleUsecase.deleteOne(roleId);
     if (!deletedRole) {
       return res.status(404).json({ message: 'Role not found' });
     }
@@ -68,4 +68,4 @@ async function deleteRole(req, res) {
   }
 }
 
-module.exports = { create, getList, update, deleteRole };
+module.exports = { create, getList, updateOne, deleteOne };
